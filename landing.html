@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Kenjonha, Inc.</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <style>
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+      }
+      
+      li {
+        float: left;
+      }
+      
+      li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      li a:hover {
+        background-color: #111;
+      }
+  </style>
+
+  <body>
+    <ul>
+      <li><a href="#home" onclick="showHome(event)">Home</a></li>
+      <li><a href="#news" onclick="showNews(event)">News</a></li>
+      <li><a href="#contact" onclick="showContact(event)">Contact us</a></li>
+      <li><a href="register.php">Register</a></li>
+      <li><a href="login.php">Log in</a></li>
+    </ul>
+
+    <div id="home">
+      <!-- Content for the Home section -->
+      <h1>Welcome to the Home Page</h1>
+      <p>This is some content for the home page.</p>
+      <div class="content">
+        <div class="introBox">
+          <div>
+            <p>
+              Welcome to Kenjonha, Inc. <br />We are dealing with pay-roll for
+              employees. <br />Employee will be able to view their YTD for their
+              account. <br />Edit their own account information. <br />Select
+              their type of payment either direct or check.
+            </p>
+          </div>
+          <button class="register"><a href="register.php">Register</a></button>
+          <button class="login"><a href="login.php">Log in</a></button>
+        </div>
+    </div>
+    </div>
+
+    <div id="news" style="display: none;">
+      <!-- Content for the News section -->
+      <h1>News</h1>
+    </div>
+
+    <div id="contact" style="display: none;">
+      <!-- Content for the Contact section -->
+      <h1>Contact Us</h1>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <script>
+        function showContact(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('news').style.display = 'none';
+            document.getElementById('contact').style.display = 'block';
+          }
+          
+          function showHome(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            document.getElementById('contact').style.display = 'none';
+            document.getElementById('news').style.display = 'none';
+            document.getElementById('home').style.display = 'block';
+          }
+          
+          function showNews(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            document.getElementById('contact').style.display = 'none';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('news').style.display = 'block';
+          }
+    </script>
+</body>
+  
+</html>
