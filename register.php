@@ -1,15 +1,6 @@
 <?php
-$servername = "localhost";
-$dBUsername = "root";
-$dBPassword = "";
-$dBName = "CSC350";
-
-// Establish a connection to the database
-$conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+session_start(); // Start or resume a session
+include_once "db_connection.php"; // Include the database connection file
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

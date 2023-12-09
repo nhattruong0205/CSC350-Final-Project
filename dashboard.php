@@ -1,11 +1,22 @@
 <?php
 session_start(); // Start or resume the session
+include_once "db_connection.php"; // Include the database connection file
 
 // Check if the username is set in the session
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // Retrieve the username from the session variable
     $role = $_SESSION['role'];
     // Use the $username variable as needed in the dashboard
+    $sql = "SELECT * FROM jobs WHERE jobName='$role'";
+    $result = mysqli_query($conn, $sql);
+
+    $wage = "";
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $wage = $row['wages'];
+    } else {
+        $wage = "No wage data available for this role.";
+    }
 } else {
     // If the username is not set in the session, handle the situation (e.g., redirect to login)
     header("Location: login.php");
@@ -57,6 +68,8 @@ if (isset($_SESSION['username'])) {
       <!-- Content for the Dashboard section -->
       <h2>Welcome, <?php echo $username; ?>!</h2>
       <h2>Your role is: <?php echo $role; ?></h2>
+      <h2>Your wage is: <?php echo $wage; ?></h2>
+
     </div>
 
     <div id="personalInfo" style="display: none;">
@@ -67,6 +80,15 @@ if (isset($_SESSION['username'])) {
     <div id="calPayRoll" style="display: none;">
       <!-- Content for the Calculate Payroll section -->
       <h1>Calculate Payroll</h1>
+      <label for="hours">Hours Worked:</label><br>
+         <input type="number" id="hours" min="0"><br><br>
+  
+         <button onclick="calculateWage(<?php echo $wage; ?>)">Calculate</button> <!-- Pass the wage as an argument -->
+
+  <p id="result"></p>
+
+  <!-- Include the JavaScript file -->
+  <script src="wageCalculator.js"></script>
     </div>
 
     <div id="incomingSalary" style="display: none;">
