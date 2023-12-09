@@ -4,6 +4,7 @@ session_start(); // Start or resume the session
 // Check if the username is set in the session
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // Retrieve the username from the session variable
+    $role = $_SESSION['role'];
     // Use the $username variable as needed in the dashboard
 } else {
     // If the username is not set in the session, handle the situation (e.g., redirect to login)
@@ -55,6 +56,7 @@ if (isset($_SESSION['username'])) {
     <div id="dashboard">
       <!-- Content for the Dashboard section -->
       <h2>Welcome, <?php echo $username; ?>!</h2>
+      <h2>Your role is: <?php echo $role; ?></h2>
     </div>
 
     <div id="personalInfo" style="display: none;">

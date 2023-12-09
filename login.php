@@ -25,7 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($result) == 1) {
         // Correct username and password
+        $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $username; // Store username in session variable
+        $_SESSION['role'] = $row['role']; // Store role in session variable
         header("Location: dashboard.php"); // Redirect to dashboard or another page after successful login
         exit();
     } else {

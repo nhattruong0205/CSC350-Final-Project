@@ -13,20 +13,57 @@ if (!$conn) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = $_POST["firstName"];
+    $lastName = $_POST["lastName"];
+    $dob = $_POST["dob"];
+    $gender = $_POST["gender"];
     $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"]; // Note: Consider encrypting passwords for security
+    $phone = $_POST["phone"];
+    $role = $_POST["role"];
 
-    // Prepare SQL statement to insert data into a 'users' table
-    $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+    // Initilize error
+    $errors = [];
 
-    if (mysqli_query($conn, $sql)) {
-        echo 'New record created successfully';
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    // Check if the username already exists
+    $checkUsernameQuery = "SELECT * FROM users WHERE username = '$username'";
+    $resultUsername = mysqli_query($conn, $checkUsernameQuery);
+
+    if (mysqli_num_rows($resultUsername) > 0) {
+        $errors[] = "Username already exists. Please choose a different username.";
     }
-}
 
+    $checkEmailQuery = "SELECT * FROM users WHERE email = '$email'";
+    $resultEmail = mysqli_query($conn, $checkEmailQuery);
+
+    if (mysqli_num_rows($resultEmail) > 0) {
+        $errors[] = "Email already used. Please choose a different email.";
+    }
+
+    $checkPhoneQuery = "SELECT * FROM users WHERE phone = '$phone'";
+    $resultPhone = mysqli_query($conn, $checkPhoneQuery);
+
+    if (mysqli_num_rows($resultPhone) > 0) {
+        $errors[] = "This phone number is already used. Please choose a different phone number.";
+    }
+
+    if (!empty($errors)) {
+      foreach ($errors as $error) {
+          echo $error . "<br>";
+      }
+    }else{
+        $sql = "INSERT INTO 
+        users (firstName, lastName, dob, gender, username, email, password, phone, role) 
+        VALUES ('$firstName', '$lastName', '$dob', '$gender', '$username', '$email', '$password', '$phone', '$role')";
+
+      if (mysqli_query($conn, $sql)) {
+          echo 'New record created successfully';
+      } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+      }
+}
 // Close the database connection
 mysqli_close($conn);
 ?>
