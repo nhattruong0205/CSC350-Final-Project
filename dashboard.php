@@ -82,6 +82,7 @@ if (isset($_SESSION['username'])) {
       <li><a href="personalInfo.php">PersonalInfo</a></li>
       <li><a href="#calPayRoll" onclick="showCalculatePayRoll(event)">Calculate Payroll</a></li>
       <li><a href="#incomingSalary" onclick="showInComingPayDate(event)">Incoming salary</a></li>
+      <li><a href="#showBalance" onclick="showBalance(event)">Balance Statement</a></li>
       <li><a href="landing.html">Log out</a></li>
     </ul>
    
@@ -113,12 +114,18 @@ if (isset($_SESSION['username'])) {
       <h1>Incoming Salary</h1>
     </div>
 
+    <div id="showBalance" style="display: none;">
+      <!-- Content for the Calculate Payroll section -->
+      <h1> Balance Statement</h1>
+    </div>
+
     <script>
         function showDashboard(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('dashboard').style.display = 'block';
             document.getElementById('calPayRoll').style.display = 'none';
             document.getElementById('incomingSalary').style.display = 'none';
+            document.getElementById('showBalance').style.display = 'none';
           }
           
           function showCalculatePayRoll(event) {
@@ -126,6 +133,7 @@ if (isset($_SESSION['username'])) {
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('calPayRoll').style.display = 'block';
             document.getElementById('incomingSalary').style.display = 'none';
+            document.getElementById('showBalance').style.display = 'none';
           }
 
           function showInComingPayDate(event) {
@@ -133,6 +141,15 @@ if (isset($_SESSION['username'])) {
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('calPayRoll').style.display = 'none';
             document.getElementById('incomingSalary').style.display = 'block';
+            document.getElementById('showBalance').style.display = 'none';
+          }
+
+          function showBalance(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('calPayRoll').style.display = 'none';
+            document.getElementById('incomingSalary').style.display = 'none';
+            document.getElementById('showBalance').style.display = 'block';
           }
     </script>
 </body>

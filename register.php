@@ -63,50 +63,52 @@ mysqli_close($conn);
 <html>
 <head>
   <title>User Signup</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/login-register.css"> <!-- Link to your external CSS file -->
 </head>
 <body>
+    <div class="header">
+			<img src="image/kenjonha-logo.png" alt="logo" style="width:50%;">
+		</div>
   <h2>Sign Up</h2>
   <form action="register.php" method="post">
-    <label for="firstName">First name:</label><br>
+    <label for="firstName">First name:</label>
     <input type="text" id="firstName" name="firstName"><br><br>
 
     <form action="register.php" method="post">
-    <label for="lastName">Last name:</label><br>
+    <label for="lastName">Last name:</label>
     <input type="text" id="lastName" name="lastName"><br><br>
 
-    <label for="dob">Date of Birth:</label><br>
+    <label for="dob">Date of Birth:</label>
     <input type="date" id="dob" name="dob"><br><br>
 
-    <label for="gender">Gender:</label><br>
+    <label for="gender">Gender:</label>
     <input type="radio" id="male" name="gender" value="male">
     <label for="male">Male</label>
     <input type="radio" id="female" name="gender" value="female">
-    <label for="female">Female</label><br><br>
+    <label for="female">Female</label><br>
     
-    <label for="username">Username:</label><br>
+    <label for="username">Username:</label>
     <input type="text" id="username" name="username"><br><br>
     
-    <label for="email">Email:</label><br>
+    <label for="email">Email:</label>
     <input type="email" id="email" name="email"><br><br>
     
-    <label for="password">Password:</label><br>
+    <label for="password">Password:</label
     <input type="password" id="password" name="password"><br><br>
     
-    <label for="phone">Phone Number:</label><br>
+    <label for="phone">Phone Number:</label>
     <input type="tel" id="phone" name="phone"><br><br>
 
-    <label for="role">Role of Job:</label><br>
+    <label for="role">Role of Job:</label>
     <select id="role" name="role">
       <option value="engineer">Engineer</option>
       <option value="designer">Designer</option>
       <option value="manager">Manager</option>
-      <!-- Add more options as needed -->
     </select><br><br>
 
-    <input type="submit" value="Sign Up">
-    <br><br>
-    <button class= "back"><a href="landing.html"> Back <button>
+    <input type="submit" value="Sign Up"><br>
+
+    <a href="landing.html" class="back-button">Back</a>
   </form>
 </body>
 
