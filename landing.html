@@ -3,6 +3,7 @@
   <head>
     <title>Kenjonha, Inc.</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="css/news-styles.css"> Link to the new news-related stylesheet -->
   </head>
   <style>
     ul {
@@ -35,6 +36,7 @@
       <li><a href="#home" onclick="showHome(event)">Home</a></li>
       <li><a href="#news" onclick="showNews(event)">News</a></li>
       <li><a href="#contact" onclick="showContact(event)">Contact us</a></li>
+      <li><a href="#credit" onclick="showCredit(event)">Credits</a></li>
       <li><a href="register.php">Register</a></li>
       <li><a href="login.php">Log in</a></li>
     </ul>
@@ -61,7 +63,24 @@
 
     <div id="news" style="display: none;">
       <!-- Content for the News section -->
-      <h1>News</h1>
+      <div style="background-color: #f2f2f2; padding: 20px;">
+        <h1 style="color: #333;">Latest News</h1>
+    
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+          <h2 style="color: #444;">Changing Location</h2>
+          <p style="color: #666;">We move from NY to CA</p>
+        </div>
+    
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+          <h2 style="color: #444;">Upgrade on the minimum wages</h2>
+          <p style="color: #666;">The minimum wage for all employee within Caifornia State is now $20.</p>
+        </div>
+    
+        <div style="border: 1px solid #ccc; padding: 10px;">
+          <h2 style="color: #444;">Maintenance </h2>
+          <p style="color: #666;">Our website will be maintainanced at 11:59pm Dec 10, 2023 </p>
+        </div>
+      </div>
     </div>
 
     <div id="contact" style="display: none;">
@@ -77,12 +96,80 @@
         <input type="submit" value="Submit">
       </form>
     </div>
+
+    <div id="credit" style="display: none;">
+      <!-- Content for the Credits section -->
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <title>Contributor Credits</title>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+          }
+          .contributor {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            overflow: hidden;
+          }
+          .contributor img {
+            width: 20%; /* Adjust the width percentage as needed */
+            max-width: 100px; /* Set a maximum width if necessary */
+            height: auto;
+            float: left;
+            margin-right: 15px;
+            border-radius: 50%;
+          }
+          
+          .contributor h2 {
+            margin-top: 0;
+            color: #333;
+          }
+          .contributor p {
+            margin-bottom: 0;
+            color: #666;
+          }
+        </style>
+      </head>
+      <body>
+
+        <div class="contributor">
+          <img src="image/Nhat Truong.jpg" alt="Nhat Truong">
+          <h2>Nhat Truong</h2>
+          <p>Role: Developer</p>
+          <p>Contribution: HTML, PHP, Dataset, Javascript, Styling</p>
+        </div>
+
+        <div class="contributor">
+          <img src="image/Kennie Dionisio.jpg" alt="Kennie Dionisio">
+          <h2>Kennie Dionisio</h2>
+          <p>Role: Designer</p>
+          <p>Contribution: Styling</p>
+        </div>
+
+        <div class="contributor">
+          <img src="image/Jordan Rivas.png" alt="Jordan Rivas">
+          <h2>Jordan Rivas</h2>
+          <p>Role: Designer</p>
+          <p>Contribution: Styling</p>
+        </div>
+      </body>      
+      </html>
+    </div>
+
     <script>
         function showContact(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('home').style.display = 'none';
             document.getElementById('news').style.display = 'none';
             document.getElementById('contact').style.display = 'block';
+            document.getElementById('credit').style.display = 'none';
           }
           
           function showHome(event) {
@@ -90,13 +177,23 @@
             document.getElementById('contact').style.display = 'none';
             document.getElementById('news').style.display = 'none';
             document.getElementById('home').style.display = 'block';
+            document.getElementById('credit').style.display = 'none';
           }
           
           function showNews(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('contact').style.display = 'none';
             document.getElementById('home').style.display = 'none';
-            document.getElementById('news').style.display = 'block';
+            document.getElementById('news').style.display = 'block';          
+            document.getElementById('credit').style.display = 'none';
+          }
+
+          function showCredit(event) {
+            event.preventDefault(); // Prevent the default behavior of the link
+            document.getElementById('contact').style.display = 'none';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('news').style.display = 'none';          
+            document.getElementById('credit').style.display = 'block';
           }
     </script>
 </body>

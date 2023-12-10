@@ -6,6 +6,7 @@ include_once "db_connection.php"; // Include the database connection file
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username']; // Retrieve the username from the session variable
     $role = $_SESSION['role'];
+    
     // Use the $username variable as needed in the dashboard
     $sql = "SELECT * FROM jobs WHERE jobName='$role'";
     $result = mysqli_query($conn, $sql);
@@ -16,6 +17,26 @@ if (isset($_SESSION['username'])) {
         $wage = $row['wages'];
     } else {
         $wage = "No wage data available for this role.";
+    }
+
+    // Use the $username variable as needed in the dashboard
+    $sql = "SELECT * FROM users WHERE username='$username'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $userID = $row['userID'];
+        $firstName = $row['firstName'];
+        $lastName = $row['lastName'];
+        $dob = $row['dob'];
+        $gender = $row['gender'];
+        $username= $row['username'];
+        $email = $row['email'];
+        $password = $row['password'];
+        $phone = $row['phone'];
+        $role= $row['role'];
+    } else {
+        echo("No data available for this.");
     }
 } else {
     // If the username is not set in the session, handle the situation (e.g., redirect to login)
@@ -58,7 +79,7 @@ if (isset($_SESSION['username'])) {
   <body>
     <ul>
       <li><a href="#dashboard" onclick="showDashboard(event)">Dashboard</a></li>
-      <li><a href="#personalInfo" onclick="showPersonalInfo(event)">PersonalInfo</a></li>
+      <li><a href="personalInfo.php">PersonalInfo</a></li>
       <li><a href="#calPayRoll" onclick="showCalculatePayRoll(event)">Calculate Payroll</a></li>
       <li><a href="#incomingSalary" onclick="showInComingPayDate(event)">Incoming salary</a></li>
       <li><a href="landing.html">Log out</a></li>
@@ -69,12 +90,8 @@ if (isset($_SESSION['username'])) {
       <h2>Welcome, <?php echo $username; ?>!</h2>
       <h2>Your role is: <?php echo $role; ?></h2>
       <h2>Your wage is: <?php echo $wage; ?></h2>
-
-    </div>
-
-    <div id="personalInfo" style="display: none;">
-      <!-- Content for the Personal Information section -->
-      <h1>Personal Info</h1>
+      <h2>Your gender: <?php echo $gender; ?></h2>
+      <h2>Your userID: <?php echo $userID; ?></h2>
     </div>
 
     <div id="calPayRoll" style="display: none;">
@@ -100,23 +117,13 @@ if (isset($_SESSION['username'])) {
         function showDashboard(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('dashboard').style.display = 'block';
-            document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('calPayRoll').style.display = 'none';
             document.getElementById('incomingSalary').style.display = 'none';
           }
           
-          function showPersonalInfo(event) {
-            event.preventDefault(); // Prevent the default behavior of the link
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('personalInfo').style.display = 'block';
-            document.getElementById('calPayRoll').style.display = 'none';
-            document.getElementById('incomingSalary').style.display = 'none';
-        }
-          
           function showCalculatePayRoll(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('calPayRoll').style.display = 'block';
             document.getElementById('incomingSalary').style.display = 'none';
           }
@@ -124,7 +131,6 @@ if (isset($_SESSION['username'])) {
           function showInComingPayDate(event) {
             event.preventDefault(); // Prevent the default behavior of the link
             document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('calPayRoll').style.display = 'none';
             document.getElementById('incomingSalary').style.display = 'block';
           }
